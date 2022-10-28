@@ -11,7 +11,7 @@ public class SQL {
   private final String AgregarNIT = "INSERT INTO Telefonos(NIT,TelOficina,TelCelular,TelCasa,TelConta,TelCompras,TelPagos) VALUES(?,?,?,?,?,?,?);";
   private final String EliminarNIT ="DELETE FROM Telefonos WHERE Nit =?;";  
   
-  private final String insertarUsuario = "INSERT INTO Usuario(Usuario,Nombre,Direccion,Telefono,Passw.Rol) VALUES(?,?,?,?,?,?);";
+  private final String insertarUsuario = "INSERT INTO Usuario(Usuario,Nombre,Direccion,Telefono,Passw) VALUES(?,?,?,?,?);";
        
     
     
