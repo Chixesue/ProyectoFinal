@@ -1,7 +1,7 @@
 package Controlador;
 
 import Conector.Conector;
-import Conector.SQL;
+import Conector.SQLClientes;
 import Modelo.ModeloClientes;
 import Vistas.VistaClientes;
 import java.sql.ResultSet;
@@ -19,7 +19,7 @@ public class ControladorClientes implements ActionListener, KeyListener, FocusLi
     
     ModeloClientes modeloC;
     VistaClientes vistaC;
-    SQL sql = new SQL();
+    SQLClientes sql = new SQLClientes();
     Conector conector = new Conector();
     PreparedStatement ps;
     ResultSet resultado;
@@ -105,11 +105,11 @@ public class ControladorClientes implements ActionListener, KeyListener, FocusLi
         try{
             conector.conectar();
             ps = (PreparedStatement) conector.preparar(sql.getActualizarCliente());
-            ps.setString(1, modeloC.getVistaC().txtNit.getText());
-            ps.setString(2, modeloC.getVistaC().txtNombre.getText());
-            ps.setString(3, modeloC.getVistaC().txtDireccion.getText());
-            ps.setString(4, modeloC.getVistaC().txtCorreo.getText());
-            ps.setString(5, modeloC.getVistaC().txtTelefono.getText());
+            ps.setString(1, modeloC.getVistaC().txtNombre.getText());
+            ps.setString(2, modeloC.getVistaC().txtDireccion.getText());
+            ps.setString(3, modeloC.getVistaC().txtCorreo.getText());
+            ps.setString(4, modeloC.getVistaC().txtTelefono.getText());
+            ps.setString(5, modeloC.getVistaC().txtNit.getText());
             resultado = ps.execute();
         }catch (SQLException ex){
             resultado = true;

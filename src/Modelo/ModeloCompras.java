@@ -7,12 +7,18 @@ import javax.swing.table.DefaultTableModel;
 public class ModeloCompras {
    
     private VistaCompras vistaCo;
-    private DefaultTableModel modeloTabla;
+    public DefaultTableModel modeloTabla;
     private String NIT;
     private String fecha;
-    private String nombre;
-    private String codigoproducto;       
+    private String nombreCliente;
+    private String correo;
+    private String telefono;
+    private String direccion;
+    private String codProducto;       
     private String unidades;
+    private String nombreProducto;
+    private String precCosto;
+    private String precVenta;
     private String descripcion;
     private JTable compras; 
 
@@ -39,8 +45,6 @@ public class ModeloCompras {
         vistaCo.tblCompras.setModel(modeloTabla);
     }
     
-    
-
     public String getNIT() {
         return NIT;
     }
@@ -58,19 +62,45 @@ public class ModeloCompras {
     }
 
     public String getNombre() {
-        return nombre;
+        return nombreCliente;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombreCliente = nombre;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+    
+    
+
     public String getCodigoproducto() {
-        return codigoproducto;
+        return codProducto;
     }
 
     public void setCodigoproducto(String codigoproducto) {
-        this.codigoproducto = codigoproducto;
+        this.codProducto = codigoproducto;
     }
 
     public String getUnidades() {
@@ -80,6 +110,39 @@ public class ModeloCompras {
     public void setUnidades(String unidades) {
         this.unidades = unidades;
     }
+
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
+
+    public String getPrecCosto() {
+        return precCosto;
+    }
+
+    public void setPrecCosto(String precCosto) {
+        this.precCosto = precCosto;
+    }
+
+    public String getPrecVenta() {
+        return precVenta;
+    }
+
+    public void setPrecVenta(String precVenta) {
+        this.precVenta = precVenta;
+    }
+    
 
     public String getDescripcion() {
         return descripcion;
@@ -96,13 +159,4 @@ public class ModeloCompras {
     public void setCompras(JTable compras) {
         this.compras = compras;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
