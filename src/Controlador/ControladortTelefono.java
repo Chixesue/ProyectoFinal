@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class ControladortTelefono implements ActionListener{
 
     ModeloTelefono ModeloT;
-     PreparedStatement ps;
+    PreparedStatement ps;
     ResultSet resultado;
     Conector conector = new Conector();
     SQL sql = new SQL();

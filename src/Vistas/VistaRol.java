@@ -2,18 +2,29 @@ package Vistas;
 
 //import Controlador.ControladorRol;
 
+
+import Conector.Conector;
+import Conector.SQLRol;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 
 public class VistaRol extends javax.swing.JFrame {
 
+    Conector conector = new Conector();
+    SQLRol sqlRol;
+    
     public String CodRol;   //VARIABLE PARA VALIDAR QUE NO ESTE VACIA
     public String DesRol;   //VARIABLE PARA VALIDAR QUE NO ESTE VACIA
     
+    
     public VistaRol() {
         initComponents();
-        setTitle("Ingreso de Rol");
+        setResizable(false);
+        setTitle("INGRESO DE ROL");
         this.setLocationRelativeTo(null);
+        
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -182,7 +193,10 @@ public class VistaRol extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         CodRol = txtCodRol.getText().trim();    // ASIGNA VALOR A LA VARIABLE
         
-        if (CodRol.equals("")){
+        if (!CodRol.equals("")){
+            
+            
+        } else {        
            JOptionPane.showMessageDialog(null, "Código de Rol no puede ir en blanco, verifique");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed

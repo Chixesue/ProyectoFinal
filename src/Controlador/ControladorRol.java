@@ -13,9 +13,9 @@ public class ControladorRol implements ActionListener{
     
     ModeloRol   ModeloR;
     VistaRol    VistaR;
-    Conector conector = new Conector();
+    Conector    conector = new Conector();
     PreparedStatement ps;
-    ResultSet resultado;
+    ResultSet   resultado;
 
     public ControladorRol(ModeloRol ModeloR, VistaRol VistaR) {
         this.ModeloR = ModeloR;
@@ -28,10 +28,12 @@ public class ControladorRol implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       
     }
     
     
-    
+    public void LimpiaRol(){  
+        
+    }
     
 }
