@@ -11,6 +11,7 @@ public class VistaLogin extends javax.swing.JFrame {
         ModeloLogin modelo = new ModeloLogin(this);
         ControladorLogin controlador = new ControladorLogin(modelo);
         setControlador(controlador);
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

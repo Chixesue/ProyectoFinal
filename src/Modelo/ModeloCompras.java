@@ -8,6 +8,8 @@ public class ModeloCompras {
    
     private VistaCompras vistaCo;
     public DefaultTableModel modeloTabla;
+    private String NoFactura;
+    private String NoSerie;
     private String NIT;
     private String fecha;
     private String nombreCliente;
@@ -43,6 +45,30 @@ public class ModeloCompras {
 
     public void setModeloTabla(DefaultTableModel modeloTabla) {
         vistaCo.tblCompras.setModel(modeloTabla);
+    }
+
+    public String getNoFactura() {
+        return NoFactura;
+    }
+
+    public void setNoFactura(String NoFactura) {
+        this.NoFactura = NoFactura;
+    }
+
+    public String getNoSerie() {
+        return NoSerie;
+    }
+
+    public void setNoSerie(String NoSerie) {
+        this.NoSerie = NoSerie;
+    }
+
+    public String getCodProducto() {
+        return codProducto;
+    }
+
+    public void setCodProducto(String codProducto) {
+        this.codProducto = codProducto;
     }
     
     public String getNIT() {
@@ -91,16 +117,6 @@ public class ModeloCompras {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-    
-    
-
-    public String getCodigoproducto() {
-        return codProducto;
-    }
-
-    public void setCodigoproducto(String codigoproducto) {
-        this.codProducto = codigoproducto;
     }
 
     public String getUnidades() {

@@ -12,6 +12,7 @@ public class VistaCompras extends javax.swing.JFrame {
     public VistaCompras() {
         initComponents();
         modelo = new DefaultTableModel();
+        modelo.addColumn("No. Factura / No. Serie");
         modelo.addColumn("NIT / Codigo");
         modelo.addColumn("Nombre cliente /Nombre producto");
         modelo.addColumn("Direccion /Unidades");
@@ -41,7 +42,7 @@ public class VistaCompras extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtCodProducto = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtUniades = new javax.swing.JTextField();
+        txtUnidades = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
@@ -65,9 +66,9 @@ public class VistaCompras extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         btnCompra = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNoFactura = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtNoSerie = new javax.swing.JTextField();
 
         jScrollPane2.setViewportView(jEditorPane1);
 
@@ -96,7 +97,7 @@ public class VistaCompras extends javax.swing.JFrame {
 
         jLabel6.setText("Unidades :");
 
-        txtUniades.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtUnidades.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabel7.setText("Descripción :");
 
@@ -143,9 +144,9 @@ public class VistaCompras extends javax.swing.JFrame {
 
         jLabel14.setText("No. Factura:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtNoFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtNoFacturaActionPerformed(evt);
             }
         });
 
@@ -176,7 +177,7 @@ public class VistaCompras extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtUniades, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txtPrecCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,11 +225,11 @@ public class VistaCompras extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel14)
                                 .addGap(54, 54, 54)
-                                .addComponent(jTextField1)
+                                .addComponent(txtNoFactura)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel15)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNoSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(51, 51, 51)))
@@ -246,9 +247,9 @@ public class VistaCompras extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNoFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNoSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
@@ -277,15 +278,16 @@ public class VistaCompras extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtUniades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNombrePCompras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(txtPrecVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12)
-                    .addComponent(txtPrecCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPrecVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPrecCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -324,9 +326,9 @@ public class VistaCompras extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombrePComprasActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtNoFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoFacturaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtNoFacturaActionPerformed
 
     public static void main(String args[]) {
 
@@ -383,8 +385,6 @@ public class VistaCompras extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     public javax.swing.JTable tblCompras;
     public javax.swing.JTextField txtCodProducto;
     public javax.swing.JTextField txtCorreoCompras;
@@ -392,12 +392,14 @@ public class VistaCompras extends javax.swing.JFrame {
     public javax.swing.JTextField txtDireccionCompras;
     public javax.swing.JTextField txtFecha;
     public javax.swing.JTextField txtNitCompras;
+    public javax.swing.JTextField txtNoFactura;
+    public javax.swing.JTextField txtNoSerie;
     public javax.swing.JTextField txtNombrePCompras;
     public javax.swing.JTextField txtNombrecCompras;
     public javax.swing.JTextField txtPrecCosto;
     public javax.swing.JTextField txtPrecVenta;
     public javax.swing.JTextField txtTelefonoCompras;
-    public javax.swing.JTextField txtUniades;
+    public javax.swing.JTextField txtUnidades;
     // End of variables declaration//GEN-END:variables
     public void setControlador (ControladorCompras c){
         btnAgregar.addActionListener(c);

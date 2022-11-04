@@ -2,10 +2,18 @@ package Vistas;
 
 //import Controlador.ControladorRol;
 
+import javax.swing.JOptionPane;
+
+
 public class VistaRol extends javax.swing.JFrame {
 
+    public String CodRol;   //VARIABLE PARA VALIDAR QUE NO ESTE VACIA
+    public String DesRol;   //VARIABLE PARA VALIDAR QUE NO ESTE VACIA
+    
     public VistaRol() {
         initComponents();
+        setTitle("Ingreso de Rol");
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -24,7 +32,7 @@ public class VistaRol extends javax.swing.JFrame {
         btnGrabar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnIngresar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -61,15 +69,30 @@ public class VistaRol extends javax.swing.JFrame {
 
         btnGrabar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnGrabar.setText("Grabar");
+        btnGrabar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGrabarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSalir.setText("Salir");
 
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
-        btnIngresar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnIngresar.setText("Ingresar");
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -87,8 +110,8 @@ public class VistaRol extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(txtCodRol, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 176, Short.MAX_VALUE))
                             .addComponent(txtDescripRol)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -110,7 +133,7 @@ public class VistaRol extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCodRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnIngresar))
+                    .addComponent(btnBuscar))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtDescripRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -138,9 +161,9 @@ public class VistaRol extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -155,6 +178,33 @@ public class VistaRol extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        CodRol = txtCodRol.getText().trim();    // ASIGNA VALOR A LA VARIABLE
+        
+        if (CodRol.equals("")){
+           JOptionPane.showMessageDialog(null, "Código de Rol no puede ir en blanco, verifique");
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
+        CodRol = txtCodRol.getText().trim();
+        DesRol = txtDescripRol.getText().trim();
+        
+        if (CodRol.equals("") || DesRol.equals("")){
+            JOptionPane.showMessageDialog(null, "Codigo o descripción del Rol, No puede ir en blanco");
+        }
+        
+    }//GEN-LAST:event_btnGrabarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        CodRol = txtCodRol.getText().trim();
+        DesRol = txtDescripRol.getText().trim();
+        
+        if (CodRol.equals("") || DesRol.equals("")){
+            JOptionPane.showMessageDialog(null, "Codigo o descripción del Rol, No puede ir en blanco");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     public static void main(String args[]) {
@@ -191,9 +241,9 @@ public class VistaRol extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnBuscar;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnGrabar;
-    public javax.swing.JButton btnIngresar;
     public javax.swing.JButton btnSalir;
     public javax.swing.JComboBox<String> cmbNivelRol;
     private javax.swing.JLabel jLabel1;
