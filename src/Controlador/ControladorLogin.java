@@ -9,8 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;     
-import java.util.HashSet;
-import java.util.Set;
 import javax.swing.JOptionPane;
 
 public class ControladorLogin implements ActionListener{
@@ -45,25 +43,24 @@ public class ControladorLogin implements ActionListener{
 
     public boolean validarDatos() {
         boolean res = false;                 
-            try {
-                ps = (PreparedStatement) conector.preparar(sql.getValidarUsuario());
-                ps.setString(1, modelo.getVistaL().txtUsuarioLogin.getText());
-                ps.setString(2, String.valueOf(modelo.getVistaL().txtPassLogin.getPassword()));
-                resultado = ps.executeQuery();
-                if (resultado.next()) {
-                    res = resultado.getString("Usuario").equals(modelo.getVistaL().txtUsuarioLogin.getText())
-                    && resultado.getString("Passw").equals(String.valueOf(modelo.getVistaL().txtPassLogin.getPassword()));
-                } else {
-                    JOptionPane.showMessageDialog(null, "USUARIO O PASSWORD INCORRECTO, VERIFIQUE");                 
-                    
-                    modelo.setUsuario("");
-                    modelo.setContraseña("");                  
-                }
-                conector.desconectar();
-                return res;
-            } catch (SQLException ex) {
-                conector.desconectar();
-                return res;
+        try {
+            ps = (PreparedStatement) conector.preparar(sql.getValidarUsuario());
+            ps.setString(1, modelo.getVistaL().txtUsuarioLogin.getText());
+            ps.setString(2, String.valueOf(modelo.getVistaL().txtPassLogin.getPassword()));
+            resultado = ps.executeQuery();
+            if (resultado.next()) {
+                res = resultado.getString("Usuario").equals(modelo.getVistaL().txtUsuarioLogin.getText())
+                && resultado.getString("Passw").equals(String.valueOf(modelo.getVistaL().txtPassLogin.getPassword()));
+            } else {
+                JOptionPane.showMessageDialog(null, "USUARIO O PASSWORD INCORRECTO, VERIFIQUE");                            
+                modelo.setUsuario("");
+                modelo.setContraseña("");                  
             }
-        }    
+            conector.desconectar();
+            return res;
+        } catch (SQLException ex) {
+            conector.desconectar();
+            return res;
+        }
+    }    
 }

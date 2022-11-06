@@ -18,7 +18,7 @@ public class VistaRol extends javax.swing.JFrame {
     public VistaRol() {
         initComponents();
         setResizable(false);
-        setTitle("INGRESO DE ROL");
+        setTitle("INGRESO DE ROL ");
         this.setLocationRelativeTo(null);
         
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

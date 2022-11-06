@@ -1,6 +1,5 @@
 package Controlador;
 
-
 import Conector.Conector;
 import Conector.SQL;
 import Modelo.ModeloTelefono;
