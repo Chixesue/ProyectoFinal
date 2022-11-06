@@ -1,8 +1,5 @@
 package Vistas;
 
-//import Controlador.ControladorRol;
-
-
 import Conector.Conector;
 import Conector.SQLRol;
 import javax.swing.JOptionPane;

@@ -32,8 +32,4 @@ public class ControladorRol implements ActionListener{
     }
     
     
-    public void LimpiaRol(){  
-        
-    }
-    
 }
