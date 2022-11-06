@@ -8,6 +8,7 @@ public class ModeloCompras {
    
     private VistaCompras vistaCo;
     public DefaultTableModel modeloTabla;
+    private String ID;
     private String NoFactura;
     private String NoSerie;
     private String NIT;
@@ -22,6 +23,7 @@ public class ModeloCompras {
     private String precCosto;
     private String precVenta;
     private String descripcion;
+    private String total;
     private JTable compras; 
 
     public ModeloCompras() {
@@ -159,9 +161,24 @@ public class ModeloCompras {
         this.precVenta = precVenta;
     }
     
-
     public String getDescripcion() {
         return descripcion;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
     }
 
     public void setDescripcion(String descripcion) {
