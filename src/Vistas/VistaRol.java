@@ -2,6 +2,8 @@ package Vistas;
 
 import Conector.Conector;
 import Conector.SQLRol;
+import Controlador.ControladorRol;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
@@ -73,7 +75,7 @@ public class VistaRol extends javax.swing.JFrame {
         jLabel4.setText("Nivel  Rol :");
 
         cmbNivelRol.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        cmbNivelRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        cmbNivelRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Supervisor", "Operador" }));
 
         btnGrabar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnGrabar.setText("Grabar");
@@ -85,6 +87,11 @@ public class VistaRol extends javax.swing.JFrame {
 
         btnSalir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEliminar.setText("Eliminar");
@@ -190,10 +197,8 @@ public class VistaRol extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         CodRol = txtCodRol.getText().trim();    // ASIGNA VALOR A LA VARIABLE
         
-        if (!CodRol.equals("")){
-            
-            
-        } else {        
+        if (CodRol.equals("")){
+            txtCodRol.setBackground(Color.red);                  
            JOptionPane.showMessageDialog(null, "Código de Rol no puede ir en blanco, verifique");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -202,8 +207,13 @@ public class VistaRol extends javax.swing.JFrame {
         CodRol = txtCodRol.getText().trim();
         DesRol = txtDescripRol.getText().trim();
         
-        if (CodRol.equals("") || DesRol.equals("")){
-            JOptionPane.showMessageDialog(null, "Codigo o descripción del Rol, No puede ir en blanco");
+        if (CodRol.equals("")){
+            txtCodRol.setBackground(Color.red);
+            JOptionPane.showMessageDialog(null, "Codigo No puede ir en blanco");
+        }
+        if (DesRol.equals("")){
+            txtDescripRol.setBackground(Color.red);
+            JOptionPane.showMessageDialog(null, "Descripción No puede ir en blanco");
         }
         
     }//GEN-LAST:event_btnGrabarActionPerformed
@@ -212,10 +222,19 @@ public class VistaRol extends javax.swing.JFrame {
         CodRol = txtCodRol.getText().trim();
         DesRol = txtDescripRol.getText().trim();
         
-        if (CodRol.equals("") || DesRol.equals("")){
-            JOptionPane.showMessageDialog(null, "Codigo o descripción del Rol, No puede ir en blanco");
+        if (CodRol.equals("")){
+            txtCodRol.setBackground(Color.red);
+            JOptionPane.showMessageDialog(null, "Codigo No puede ir en blanco");
+        }
+        if (DesRol.equals("")){
+            txtDescripRol.setBackground(Color.red);
+            JOptionPane.showMessageDialog(null, "Descripción No puede ir en blanco");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
 
     public static void main(String args[]) {
@@ -266,13 +285,13 @@ public class VistaRol extends javax.swing.JFrame {
     public javax.swing.JTextField txtCodRol;
     public javax.swing.JTextField txtDescripRol;
     // End of variables declaration//GEN-END:variables
-//    public void setControlador (ControladorRol c){
-//        btnEliminar.addActionListener(c);
-//        btnGrabar.addActionListener(c);
-//        btnSalir.addActionListener(c);
-//        cmbNivelRol.addActionListener(c);
-//        txtCodRol.addActionListener(c);
-//        txtDescripRol.addActionListener(c);
-//        }
+    public void setControlador (ControladorRol c){
+        btnEliminar.addActionListener(c);
+        btnGrabar.addActionListener(c);
+        btnSalir.addActionListener(c);
+        cmbNivelRol.addActionListener(c);
+        txtCodRol.addActionListener(c);
+        txtDescripRol.addActionListener(c);
+        }
 
 }
