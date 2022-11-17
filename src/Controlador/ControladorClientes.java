@@ -31,9 +31,7 @@ public class ControladorClientes implements ActionListener, KeyListener, FocusLi
 
     public ControladorClientes(ModeloClientes modeloC) {
         this.modeloC = modeloC;
-    }
-    
-    
+    }    
 
     @Override
     public void actionPerformed(ActionEvent e) {

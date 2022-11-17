@@ -3,6 +3,7 @@ package Vistas;
 
 import Controlador.ControladorUsuario;
 import Modelo.ModelosUsuario;
+import javax.swing.WindowConstants;
 
 
 public class VistaUsuarios extends javax.swing.JFrame {
@@ -13,6 +14,12 @@ public class VistaUsuarios extends javax.swing.JFrame {
         ModelosUsuario modelo = new ModelosUsuario(this);
         ControladorUsuario controlador = new ControladorUsuario(modelo);
         setControlador(controlador);
+        
+        setResizable(false);
+        setTitle("INGRESO DE USUARIOS");
+        this.setLocationRelativeTo(null);
+        
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
    
@@ -83,12 +90,6 @@ public class VistaUsuarios extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel3.setText("Direccion:");
 
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel4.setText("Password :");
 
@@ -98,17 +99,11 @@ public class VistaUsuarios extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel6.setText("Permisos nivel :");
 
-        cmbNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
         cmbNivel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btnCancelarUs.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnCancelarUs.setText("Salir");
         btnCancelarUs.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnCancelarUs.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCancelarUsMouseClicked(evt);
-            }
-        });
 
         btnGuardarUs.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnGuardarUs.setText("Guardar");
@@ -123,12 +118,6 @@ public class VistaUsuarios extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel8.setText("Nombre :");
-
-        txtDireccionUs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDireccionUsActionPerformed(evt);
-            }
-        });
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel7.setText("Telefono:");
@@ -168,9 +157,9 @@ public class VistaUsuarios extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(cmbNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtPuesto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(cmbNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(btnGuardarUs, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,21 +229,6 @@ public class VistaUsuarios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
-
-    private void btnCancelarUsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarUsMouseClicked
-        // TODO add your handling code here:
-        VistaUsuarios VistaUsuarios = new VistaUsuarios();
-        VistaUsuarios.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnCancelarUsMouseClicked
-
-    private void txtDireccionUsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionUsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionUsActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -317,20 +291,11 @@ public class VistaUsuarios extends javax.swing.JFrame {
     public javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
-    void setVisble(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
     public void setControlador (ControladorUsuario c){
         btnCancelarUs.addActionListener(c);
         btnEliminar.addActionListener(c);
         btnGuardarUs.addActionListener(c);
-        cmbNivel.addActionListener(c);
-        txtNombreUs.addActionListener(c);
-        txtPassword.addActionListener(c);
-        txtPassword2.addActionListener(c);
-        txtUsuario.addActionListener(c);
-        txtDireccionUs.addActionListener(c);
-        txtTelefonoUs.addActionListener(c);
+        this.addWindowListener(c);
+
     }
 }

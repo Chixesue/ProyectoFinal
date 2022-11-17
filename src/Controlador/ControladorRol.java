@@ -55,7 +55,7 @@ public class ControladorRol implements ActionListener{
             Nivel_String = "Supervisor";
         } else if(Nivel == 3){
             Nivel_String = "Operador";
-        }       
+        }
         
         try {
             ps = conector.preparar(sql.getGrabarRol());
@@ -103,9 +103,8 @@ public class ControladorRol implements ActionListener{
         }          
     }    
 
-    public String Limpiar(){
+    public void Limpiar(){
         ModeloR.getVistaR().txtCodRol.setText("");
         ModeloR.getVistaR().txtDescripRol.setText("");
-        return null;
     }
 }

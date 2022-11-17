@@ -11,9 +11,9 @@ public class SQL {
   private final String AgregarNIT = "INSERT INTO Telefonos(NIT,TelOficina,TelCelular,TelCasa,TelConta,TelCompras,TelPagos) VALUES(?,?,?,?,?,?,?);";
   private final String EliminarNIT ="DELETE FROM Telefonos WHERE Nit =?;";  
   
+  // QUERY PARA INGRESO, MODIFICACIÓN, ELIMINACIÓN Y NIVEL DE USUARIO
   private final String insertarUsuario = "INSERT INTO Usuario(Usuario,Nombre,Direccion,Telefono,Passw) VALUES(?,?,?,?,?);";
-       
-    
+  private final String obtenerRol = "SELECT Descripcion, NivelRol from Rol";    
     
     
     /**     
@@ -54,10 +54,7 @@ public class SQL {
      */
     public String getValidarNivelRol() {
         return validarNivelRol;
-    }
-
-    
-    
+    }  
     
     public String getAgregarNIT() {
         return AgregarNIT;
@@ -65,14 +62,14 @@ public class SQL {
 
     public String getEliminarNIT() {
         return EliminarNIT;
-    }
-    
+    }    
 
     public String getInsertarUsuario() {
         return insertarUsuario;
-    }
-    
-    
-    
+    }    
+
+    public String getObtenerRol() {
+        return obtenerRol;
+    }    
     
 }

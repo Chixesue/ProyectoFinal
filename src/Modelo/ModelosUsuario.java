@@ -4,9 +4,7 @@ package Modelo;
 import Vistas.VistaUsuarios;
 import javax.swing.JComboBox;
 
-public class ModelosUsuario {
-
-    
+public class ModelosUsuario {   
     
   private VistaUsuarios vistaUs;
   
@@ -16,12 +14,11 @@ public class ModelosUsuario {
   private String password;  
   private String confirmpass;
   private String usuario;
-  private JComboBox<AbstractMethodError>comboBox;
+  private String puesto;
+  private String Nivel;  
 
-    public ModelosUsuario() {
-        
-        
-        
+    public ModelosUsuario(VistaUsuarios vistaUs) {
+        this.vistaUs = vistaUs;
     }
 
     public String getDireccion() {
@@ -38,9 +35,7 @@ public class ModelosUsuario {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    
+    }   
 
     public String getNombre() {
         return nombre;
@@ -73,19 +68,7 @@ public class ModelosUsuario {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-
-    public JComboBox<AbstractMethodError> getComboBox() {
-        return comboBox;
-    }
-
-    public void setComboBox(JComboBox<AbstractMethodError> comboBox) {
-        this.comboBox = comboBox;
-    }
     
-    public ModelosUsuario(VistaUsuarios vistaUs) {
-        this.vistaUs = vistaUs;
-    }
-
     public VistaUsuarios getVistaUs() {
         return vistaUs;
     }
@@ -93,14 +76,21 @@ public class ModelosUsuario {
     public void setVistaUs(VistaUsuarios vistaUs) {
         this.vistaUs = vistaUs;
     }
-    
-    
-          
-          
-          
-          
-          
-          
-          
+
+    public String getPuesto() {
+        return puesto;
+    }
+
+    public void setPuesto(String puesto) {
+        this.puesto = puesto;
+    }
+
+    public String getNivel() {
+        return Nivel;
+    }
+
+    public void setNivel(String Nivel) {
+        this.Nivel = Nivel;
+    }
           
 }

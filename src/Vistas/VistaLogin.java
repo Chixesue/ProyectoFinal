@@ -36,22 +36,11 @@ public class VistaLogin extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Inicio de Sesion");
 
-        txtUsuarioLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioLoginActionPerformed(evt);
-            }
-        });
-
         lblUsuarioLogin.setText("Usuario:");
 
         lblPassLogin.setText("Contraseña:");
 
         btnIngresar.setText("Ingresar");
-        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,19 +98,6 @@ public class VistaLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsuarioLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioLoginActionPerformed
-
-    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-//       user = txtUsuarioLogin.getText().trim();
-//       pass = txtPassLogin.getText().trim();
-//       
-//       if (user.equals("") || pass.equals("")){
-//           JOptionPane.showMessageDialog(null, "USUARIO O PASSWORD NO PUEDE IR EN BLANCO");            
-//       }
-    }//GEN-LAST:event_btnIngresarActionPerformed
-
     public static void main(String args[]) {
 
         try {
@@ -160,9 +136,6 @@ public class VistaLogin extends javax.swing.JFrame {
     public javax.swing.JTextField txtUsuarioLogin;
     // End of variables declaration//GEN-END:variables
     public void setControlador (ControladorLogin c){
-        txtUsuarioLogin.addActionListener(c);
-        txtPassLogin.addActionListener(c);
-        btnIngresar.addActionListener(c);
-    
+        btnIngresar.addActionListener(c);    
 }
 }

@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;     
-import javax.swing.JOptionPane;
 
 public class ControladorLogin implements ActionListener{
     
@@ -52,7 +51,7 @@ public class ControladorLogin implements ActionListener{
                 res = resultado.getString("Usuario").equals(modelo.getVistaL().txtUsuarioLogin.getText())
                 && resultado.getString("Passw").equals(String.valueOf(modelo.getVistaL().txtPassLogin.getPassword()));
             } else {
-                JOptionPane.showMessageDialog(null, "USUARIO O PASSWORD INCORRECTO, VERIFIQUE");                            
+                conector.mensaje("USUARIO O PASSWORD INCORRECTO, VERIFIQUE", "ERROR INICIO SECIÓN", 0);
                 modelo.setUsuario("");
                 modelo.setContraseña("");                  
             }

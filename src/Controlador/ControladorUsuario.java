@@ -3,30 +3,22 @@ package Controlador;
 import Conector.Conector;
 import Conector.SQL;
 import Modelo.ModelosUsuario;
-import Vistas.VistaUsuarios;
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.PreparedStatement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
-public class ControladorUsuario implements ActionListener{
+public class ControladorUsuario implements ActionListener, WindowListener{
     
     ModelosUsuario modelo;
-    VistaUsuarios vista;
     SQL sql = new SQL();
     Conector conector = new Conector();
     PreparedStatement ps;
     ResultSet resultado;
-
-    public ControladorUsuario(ModelosUsuario modelo, VistaUsuarios vista) {
-        this.modelo = modelo;
-        this.vista = vista;
-    }
-    
-    
     
     public ControladorUsuario(ModelosUsuario modelo){
         this.modelo = modelo;
@@ -34,17 +26,53 @@ public class ControladorUsuario implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-    if (e.getActionCommand().equals(modelo.getVistaUs().btnGuardarUs.getActionCommand())){
-        if(!insertarUsuario()){
-            conector.mensaje("Se inserto el Usuario", "Exito!", 1);
-            limpiarCampos();
-        }else {
-            conector.mensaje("A ocurrido un error", "Error", 1);
-        }
-        
-    }   
-    }
+        if (e.getActionCommand().equals(modelo.getVistaUs().btnGuardarUs.getActionCommand())){
+            if(!insertarUsuario()){
+                conector.mensaje("Se inserto el Usuario", "Exito!", 1);
+                limpiarCampos();
+            }else {
+                conector.mensaje("A ocurrido un error", "Error", 1);
+            }
+
+        }   
+    } 
     
+    @Override
+    public void windowOpened(WindowEvent e) {
+        if(e.getComponent().equals(modelo.getVistaUs())){
+            modelo.getVistaUs().cmbNivel.setModel(mostrarRol());
+        }
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+       
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+       
+    }
     
     public boolean insertarUsuario(){
         boolean resultado;
@@ -66,13 +94,28 @@ public class ControladorUsuario implements ActionListener{
         return resultado;
     }
     
+    public DefaultComboBoxModel mostrarRol(){
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();        
+        try {
+            ps = conector.preparar(sql.getObtenerRol());
+            resultado = ps.executeQuery();
+            while (resultado.next()){
+                modelo.addElement(resultado.getString(1));
+            }            
+            conector.desconectar();
+        } catch (SQLException ex) {
+            conector.mensaje("ERROR CARGAR NIVEL DE USUARIOS", "ERROR NIVEL USUARIO", 0);
+            conector.desconectar();
+        }
+        return modelo;
+    }
+    
     public void limpiarCampos(){
         modelo.getVistaUs().txtUsuario.setText("");
         modelo.getVistaUs().txtNombreUs.setText("");
         modelo.getVistaUs().txtDireccionUs.setText("");
         modelo.getVistaUs().txtTelefonoUs.setText("");
-        modelo.getVistaUs().txtPassword.setText("");
-        
+        modelo.getVistaUs().txtPassword.setText("");        
     }
     
 }
