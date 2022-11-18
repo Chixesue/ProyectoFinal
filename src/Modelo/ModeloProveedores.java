@@ -1,10 +1,14 @@
-
 package Modelo;
 
+import Vistas.VistaProveedores;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class ModeloProveedores {
  
+    
+    private VistaProveedores VistaP;
+    private DefaultTableModel modeloTabla;
     private String NIT;
     private String nombre;
     private String direccion;
@@ -12,12 +16,28 @@ public class ModeloProveedores {
     private int numero;
     private JTable proveedores;
 
-    public ModeloProveedores() {
-        
-        
-        
+    public ModeloProveedores(VistaProveedores VistaP) {
+               this.VistaP = VistaP;
     }
 
+   
+
+    public VistaProveedores getVistaP() {
+        return VistaP;
+    }
+
+    public void setVistaP(VistaProveedores VistaP) {
+        this.VistaP = VistaP;
+    }
+
+    public DefaultTableModel getModeloTabla() {
+        return modeloTabla;
+    }
+
+    public void setModeloTabla(DefaultTableModel modeloTabla) {
+      VistaP.TablaP.setModel(modeloTabla);
+    }
+   
     public String getNIT() {
         return NIT;
     }
@@ -65,11 +85,6 @@ public class ModeloProveedores {
     public void setProveedores(JTable proveedores) {
         this.proveedores = proveedores;
     }
-    
-    
-    
-    
-    
     
     
 }

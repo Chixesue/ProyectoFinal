@@ -21,6 +21,10 @@ public class ModeloTelefono {
         
     }
 
+    public ModeloTelefono(VistaTelefonos aThis) {
+      
+    }
+
     public VistaTelefonos getVistaT() {
         return vistaT;
     }
@@ -85,11 +89,4 @@ public class ModeloTelefono {
         this.pagos = pagos;
     }
 
-
-
-    
-
-
-
-    
 }

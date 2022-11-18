@@ -1,12 +1,15 @@
 package Vistas;
 
 import Controlador.ControladortTelefono;
+import Modelo.ModeloTelefono;
 
 public class VistaTelefonos extends javax.swing.JFrame {
 
     public VistaTelefonos() {
         initComponents();
-       
+        ModeloTelefono modelo = new ModeloTelefono(this);
+        ControladortTelefono controlador = new ControladortTelefono(modelo);
+        setControlador(controlador);
     }
 
 
