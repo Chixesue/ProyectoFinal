@@ -114,17 +114,19 @@ public class ControladorUsuario implements ActionListener, WindowListener{
         Conector conector = new Conector();
         boolean res;
         try {
-            conector.conectar();
-            ps = (PreparedStatement) conector.preparar(sql.getInsertarUsuario());
+            ps = conector.preparar(sql.getInsertarUsuario());
             ps.setString(1,modelo.getVistaUs().txtUsuario.getText());
             ps.setString(2,modelo.getVistaUs().txtNombreUs.getText());
             ps.setString(3,modelo.getVistaUs().txtDireccionUs.getText());
             ps.setString(4,modelo.getVistaUs().txtTelefonoUs.getText());
-            ps.setString(5,modelo.getVistaUs().txtPassword.getText());
+            ps.setString(5,String.valueOf(modelo.getVistaUs().txtPassword.getPassword()));
+            ps.setString(6, codigo);
             res = ps.execute();
             conector.desconectar();
         } catch (SQLException ex) {
-            res = true;            
+            conector.mensaje("ERROR AL INSERTAR USUARIO" +  ex.getMessage(), codigo, 0);
+            conector.desconectar();
+            res = true;
         }
         conector.desconectar();
         return res;
@@ -165,8 +167,8 @@ public class ControladorUsuario implements ActionListener, WindowListener{
     }
     
     public boolean eliminarUsuario(){
+        boolean resultado;
         try {
-            boolean resultado;
             ps = conector.preparar(sql.getEliminarUsuario());
             ps.setString(1, modelo.getVistaUs().txtUsuario.getText());
             resultado = ps.execute();            
