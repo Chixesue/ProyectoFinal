@@ -13,7 +13,9 @@ public class SQL {
   
   // QUERY PARA INGRESO, MODIFICACIÓN, ELIMINACIÓN Y NIVEL DE USUARIO
   private final String insertarUsuario = "INSERT INTO Usuario(Usuario,Nombre,Direccion,Telefono,Passw) VALUES(?,?,?,?,?);";
-  private final String obtenerRol = "SELECT Descripcion, NivelRol from Rol";    
+  private final String obtenerRol = "SELECT Descripcion, NivelRol from Rol";
+  private final String eliminarUsuario ="DELETE FROM Usuario WHERE Usuario=?;";
+  private final String obtenerCodigo = "SELECT CodigoRol FROM Rol WHERE descripcion = ?";
     
     
     /**     
@@ -71,5 +73,13 @@ public class SQL {
     public String getObtenerRol() {
         return obtenerRol;
     }    
-    
+
+    public String getEliminarUsuario() {
+        return eliminarUsuario;
+    }
+
+    public String getObtenerCodigo() {
+        return obtenerCodigo;
+    }
+            
 }

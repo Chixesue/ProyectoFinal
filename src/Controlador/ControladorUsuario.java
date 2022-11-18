@@ -24,6 +24,34 @@ public class ControladorUsuario implements ActionListener, WindowListener{
         this.modelo = modelo;
     }
 
+//@Override
+//    public void actionPerformed(ActionEvent e) {
+//        if (e.getActionCommand().equals(modelo.getVistaUs().btnGuardarUs.getActionCommand())) {
+//            if (modelo.getVistaUs().txtUsuario.getText().isEmpty() || modelo.getVistaUs().txtNombreUs.getText().isEmpty()
+//                    || modelo.getVistaUs().txtPassword.getText().isEmpty()) {
+//                JOptionPane.showMessageDialog(null, "Usuario, Nombre o Password no pueden estar vacios");
+//
+// 
+//
+//            } else if (modelo.getVistaUs().txtPassword.getText().equals(modelo.getVistaUs().txtPassword2.getText())) {
+//                insertarUsuario();
+//                conector.mensaje("Se inserto el usuario " + modelo.getVistaUs().txtUsuario.getText() + " con exito", "Exito!", 1);
+//                limpiarCampos();
+//            } else {
+//                conector.mensaje("Las contraseñas ingresadas no coinciden", "Error", 2);
+//            }
+//        }
+//        if (e.getActionCommand().equals(modelo.getVistaUs().btnEliminar.getActionCommand())) {
+//            if (!eliminarUsuario()) {
+//                conector.mensaje("Se Elimino el usuario " + modelo.getVistaUs().txtUsuario.getText() + " con exito", "Exito!", 1);
+//                limpiarCampos();
+//            } else {
+//                conector.mensaje("A ocurrido un error, no se elimino el usuario", "Error", 2);
+//            }
+//        }    
+      
+    
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(modelo.getVistaUs().btnGuardarUs.getActionCommand())){
@@ -32,9 +60,16 @@ public class ControladorUsuario implements ActionListener, WindowListener{
                 limpiarCampos();
             }else {
                 conector.mensaje("A ocurrido un error", "Error", 1);
+            }            
+        }
+        if (e.getActionCommand().equals(modelo.getVistaUs().btnEliminar.getActionCommand())) {
+            if (!eliminarUsuario()) {
+                conector.mensaje("Se Elimino el usuario " + modelo.getVistaUs().txtUsuario.getText() + " con exito", "Exito!", 1);
+                limpiarCampos();
+            } else {
+                conector.mensaje("A ocurrido un error, no se elimino el usuario", "Error", 2);
             }
-
-        }   
+        }
     } 
     
     @Override
@@ -75,7 +110,9 @@ public class ControladorUsuario implements ActionListener, WindowListener{
     }
     
     public boolean insertarUsuario(){
-        boolean resultado;
+        String codigo = obtenerCodigo();
+        Conector conector = new Conector();
+        boolean res;
         try {
             conector.conectar();
             ps = (PreparedStatement) conector.preparar(sql.getInsertarUsuario());
@@ -84,14 +121,13 @@ public class ControladorUsuario implements ActionListener, WindowListener{
             ps.setString(3,modelo.getVistaUs().txtDireccionUs.getText());
             ps.setString(4,modelo.getVistaUs().txtTelefonoUs.getText());
             ps.setString(5,modelo.getVistaUs().txtPassword.getText());
-            resultado = ps.execute();
-            
+            res = ps.execute();
+            conector.desconectar();
         } catch (SQLException ex) {
-            resultado = true;
-            
+            res = true;            
         }
         conector.desconectar();
-        return resultado;
+        return res;
     }
     
     public DefaultComboBoxModel mostrarRol(){
@@ -110,6 +146,37 @@ public class ControladorUsuario implements ActionListener, WindowListener{
         return modelo;
     }
     
+    public String obtenerCodigo(){
+        Conector conector = new Conector();
+        String codigo = "";
+        try {           
+            ps = conector.preparar(sql.getObtenerCodigo());
+            ps.setString(1, modelo.getVistaUs().cmbNivel.getSelectedItem().toString());
+            resultado = ps.executeQuery();
+            while(resultado.next()){
+                codigo = resultado.getString(1);
+            }
+            conector.desconectar();
+        } catch (SQLException ex) {
+            conector.mensaje("Error al obtener Código" + ex.getMessage(), "Error", 0);
+            conector.desconectar();
+        }        
+        return codigo;
+    }
+    
+    public boolean eliminarUsuario(){
+        try {
+            boolean resultado;
+            ps = conector.preparar(sql.getEliminarUsuario());
+            ps.setString(1, modelo.getVistaUs().txtUsuario.getText());
+            resultado = ps.execute();            
+        } catch (SQLException ex) {
+            conector.mensaje("Usuario no puedo ser eliminado", "Error eliminar Usuario", 0);        
+        } 
+        conector.desconectar();
+        return false;
+    }
+ 
     public void limpiarCampos(){
         modelo.getVistaUs().txtUsuario.setText("");
         modelo.getVistaUs().txtNombreUs.setText("");
