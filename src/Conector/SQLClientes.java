@@ -5,6 +5,7 @@ public class SQLClientes {
     
     private final String grabarCliente = "INSERT INTO Clientes(NIT,Nombre,Direccion,Correo,Telefono)  VALUES(?,?,?,?,?);";
     private final String actualizarCliente = "UPDATE Clientes SET Nombre= ?, Direccion= ?, Correo= ?, Telefono= ? WHERE NIT = ?";
+    private final String eliminarCliente = "DELETE FROM Clientes WHERE NIT = ?";
 
     /**     
     * SELECT * FROM      
@@ -23,10 +24,9 @@ public class SQLClientes {
     
     public String getActualizarCliente() {
         return actualizarCliente;
-        
-       
     }
-    
-    
-    //Prueba de Commit
+
+    public String getEliminarCliente() {
+        return eliminarCliente;
+    }
 }

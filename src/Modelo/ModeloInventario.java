@@ -1,71 +1,81 @@
 
 package Modelo;
 
+import Vistas.VistaInventario;
+import javax.swing.table.DefaultTableModel;
+
 public class ModeloInventario {
-   
-    private String codigo;
-    private String nombre;
-    private int  unidades ;
-    private double  preciocosto ;
-    private double  precioventa ;
-    private String descripcion;        
+    
+    //ASIGNA VALOR VARIABLE VISTA INVENTARIO Y MENU
+        private VistaInventario VistaI;
+    
+    //ASIGNA VALOR VARIABLES 
+        private String Ccdigo;
+        private String Nombre;
+        private Double Unidad;
+        private Double PreCosto;
+        private Double PreVenta;
+        private DefaultTableModel modeloTabla ;
+        
 
-    public ModeloInventario() {
-        
-        
-        
+    public ModeloInventario(VistaInventario VistaI) {
+        this.VistaI = VistaI;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public VistaInventario getVistaI() {
+        return VistaI;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setVistaI(VistaInventario VistaI) {
+        this.VistaI = VistaI;
+    }
+
+    public String getCcdigo() {
+        return Ccdigo;
+    }
+
+    public void setCcdigo(String Ccdigo) {
+        this.Ccdigo = Ccdigo;
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
-    public int getUnidades() {
-        return unidades;
+    public Double getUnidad() {
+        return Unidad;
     }
 
-    public void setUnidades(int unidades) {
-        this.unidades = unidades;
+    public void setUnidad(Double Unidad) {
+        this.Unidad = Unidad;
     }
 
-    public double getPreciocosto() {
-        return preciocosto;
+    public Double getPreCosto() {
+        return PreCosto;
     }
 
-    public void setPreciocosto(double preciocosto) {
-        this.preciocosto = preciocosto;
+    public void setPreCosto(Double PreCosto) {
+        this.PreCosto = PreCosto;
     }
 
-    public double getPrecioventa() {
-        return precioventa;
+    public Double getPreVenta() {
+        return PreVenta;
     }
 
-    public void setPrecioventa(double precioventa) {
-        this.precioventa = precioventa;
+    public void setPreVenta(Double PreVenta) {
+        this.PreVenta = PreVenta;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public DefaultTableModel getModeloTabla() {
+        return modeloTabla;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-            
-            
-            
-    
-    
+    public void setModeloTabla(DefaultTableModel modeloTabla) {
+        this.modeloTabla = modeloTabla;
+    } 
+        
 }

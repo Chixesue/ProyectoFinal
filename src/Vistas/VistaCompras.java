@@ -3,6 +3,7 @@ package Vistas;
 
 import Controlador.ControladorCompras;
 import Modelo.ModeloCompras;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -44,7 +45,7 @@ public class VistaCompras extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnBuscarCliente = new javax.swing.JButton();
         btnBuscarProducto = new javax.swing.JButton();
@@ -106,14 +107,19 @@ public class VistaCompras extends javax.swing.JFrame {
             }
         });
 
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
+                btnLimpiarActionPerformed(evt);
             }
         });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnBuscarCliente.setText("Buscar Cliente");
 
@@ -158,7 +164,11 @@ public class VistaCompras extends javax.swing.JFrame {
 
         jLabel15.setText("No. Serie:");
 
+        txtNoSerie.setText("x2");
+
         jLabel16.setText("ID:");
+
+        txtID.setText("Auto incremental BD");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -238,11 +248,11 @@ public class VistaCompras extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -304,7 +314,7 @@ public class VistaCompras extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCompra))
                 .addGap(24, 24, 24))
@@ -337,24 +347,15 @@ public class VistaCompras extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNoFacturaActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarActionPerformed
-
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         String []Encabezado = new String[5];
         String []Detalle = new String[5];
         
         Encabezado[0] = txtID.getText();
-        txtID.setText(null);
         Encabezado[1] = txtNoSerie.getText();
-        txtNoSerie.setText(null);
         Encabezado[2] = txtNoFactura.getText();
-        txtNoFactura.setText(null);
         Encabezado[3] = txtFecha.getText();
-        txtFecha.setText(null);
         Encabezado[4] = txtNitCompras.getText();
-        txtNitCompras.setText(null);
         
         Detalle[0] = txtCodProducto.getText();
         txtCodProducto.setText(null);
@@ -370,6 +371,20 @@ public class VistaCompras extends javax.swing.JFrame {
         modelo.addRow(Encabezado);
         modelo.addRow(Detalle);
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+    
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        
+        int filaSeleccionada = tblCompras.getSelectedRow();
+        if(filaSeleccionada>=0){
+            modelo.removeRow(filaSeleccionada);
+        }else{
+            JOptionPane.showMessageDialog(null, "no se puede");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     public static void main(String args[]) {
 
@@ -405,8 +420,8 @@ public class VistaCompras extends javax.swing.JFrame {
     public javax.swing.JButton btnBuscarCliente;
     public javax.swing.JButton btnBuscarProducto;
     public javax.swing.JButton btnCompra;
-    public javax.swing.JButton btnEditar;
     public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnLimpiar;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -444,12 +459,13 @@ public class VistaCompras extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     public void setControlador (ControladorCompras c){
         btnAgregar.addActionListener(c);
-        btnEditar.addActionListener(c);
+        btnLimpiar.addActionListener(c);
         btnEliminar.addActionListener(c);
         btnBuscarCliente.addActionListener(c);
         btnBuscarProducto.addActionListener(c);
         
-        btnBuscarProducto.addFocusListener(c);
+        
+        tblCompras.addFocusListener(c);
     }
 
 }

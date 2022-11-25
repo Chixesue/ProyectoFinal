@@ -11,7 +11,9 @@ import java.awt.event.FocusListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 public class ControladorCompras implements ActionListener, FocusListener{
     
@@ -34,49 +36,20 @@ public class ControladorCompras implements ActionListener, FocusListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals(modeloCo.getVistaCo().btnBuscarCliente.getActionCommand())){
-           GuardarDatosClientes(modeloCo.getVistaCo().txtNitCompras);
-       }if(e.getActionCommand().equals(modeloCo.getVistaCo().btnBuscarProducto.getActionCommand())){
-           GuardarDatosProducto(modeloCo.getVistaCo().txtCodProducto);
-       }else if  (e.getActionCommand().equals(modeloCo.getVistaCo().btnAgregar.getActionCommand())) {
-            /*if (!AgregarTabla()) {
-                conector.mensaje("Se grabo la informacion con exito!", "Felicidades", 1);
-                
-       
-            } else {
-                conector.mensaje("Hubo un error en la conexion, intente nuevamente", "Error", 0);
-            }*/
-        } else if (e.getActionCommand().equals(modeloCo.getVistaCo().btnEditar.getActionCommand())) {
-            if(!actualizarCompra()){
-                conector.mensaje("Se actualizo la informacion con exito!", "Felicidades", 1);
-                limpiar();
-            }else{
-                conector.mensaje("Hubo un error en la conexion, intente nuevamente", "Error", 0);
-            }
-            
-        } else if (e.getActionCommand().equals(modeloCo.getVistaCo().btnEliminar.getActionCommand())) {
-            if(!eliminarCompra()){
-                conector.mensaje("Se elimino la informacion con exito ", "Felicidades", 0);
-                limpiar();
-            }else{
-                conector.mensaje("Hubo un error en la conexion, intente nuevamente", "Error", 0);
-            }
-        }else if (e.getActionCommand().equals(modeloCo.getVistaCo().btnBuscarCliente.getActionCommand())) {
-            if(!BuscarCliente()){
-                conector.mensaje("Se busco el cliente con exito ", "Felicidades", 0);
-            }else{
-                conector.mensaje("Hubo un error en la conexion, intente nuevamente", "Error", 0);
-            }
-        }else if (e.getActionCommand().equals(modeloCo.getVistaCo().btnBuscarProducto.getActionCommand())) {
-            if(!BuscarProducto()){
-                conector.mensaje("Se Buscó el producto con exito ", "Felicidades", 0);
-            }else{
-                conector.mensaje("Hubo un error en la conexion, intente nuevamente", "Error", 0);
-            }
+           BuscarDatosClientes(modeloCo.getVistaCo().txtNitCompras);
+        }if(e.getActionCommand().equals(modeloCo.getVistaCo().btnBuscarProducto.getActionCommand())){
+           BuscarDatosProducto(modeloCo.getVistaCo().txtCodProducto);
+        /*}else if(e.getActionCommand().equals(modeloCo.getVistaCo().btnAgregar.getActionCommand())) {
+            modeloCo.setModeloTabla(AgregarTabla());
+        }else if(e.getActionCommand().equals(modeloCo.getVistaCo().btnEliminar.getActionCommand())) {
+            modeloCo.setModeloTabla(eliminarCompra());*/
+        }else if(e.getActionCommand().equals(modeloCo.getVistaCo().btnLimpiar.getActionCommand())) {
+            limpiar(); 
         }
         
     }
     
-    private void GuardarDatosClientes(JTextField txtNitCompras) {
+    private void BuscarDatosClientes(JTextField txtNitCompras) {
         try{
             conector.conectar();
             ps = (PreparedStatement) conector.preparar(sql.getValidarClienteCompras());
@@ -92,7 +65,7 @@ public class ControladorCompras implements ActionListener, FocusListener{
         }
         conector.desconectar();
     }
-    private void GuardarDatosProducto(JTextField txtCodProducto) {
+    private void BuscarDatosProducto(JTextField txtCodProducto) {
         try{
             conector.conectar();
             ps = (PreparedStatement) conector.preparar(sql.getValidarProductoCompras());
@@ -109,20 +82,17 @@ public class ControladorCompras implements ActionListener, FocusListener{
         conector.desconectar();
     }
 
-    private boolean AgregarTabla() {
-        /*String []Encabezado = new String[5];
+    /*private DefaultTableModel AgregarTabla() {
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        String []Encabezado = new String[5];
         String []Detalle = new String[5];
         
         Encabezado[0] = modeloCo.getVistaCo().txtID.getText();
-        modeloCo.getVistaCo().txtID.setText(null);
         Encabezado[1] = modeloCo.getVistaCo().txtNoSerie.getText();
-        modeloCo.getVistaCo().txtNoSerie.setText(null);
         Encabezado[2] = modeloCo.getVistaCo().txtNoFactura.getText();
-        modeloCo.getVistaCo().txtNoFactura.setText(null);
         Encabezado[3] = modeloCo.getVistaCo().txtFecha.getText();
-        modeloCo.getVistaCo().txtFecha.setText(null);
         Encabezado[4] = modeloCo.getVistaCo().txtNitCompras.getText();
-        modeloCo.getVistaCo().txtNitCompras.setText(null);
         
         Detalle[0] = modeloCo.getVistaCo().txtCodProducto.getText();
         modeloCo.getVistaCo().txtCodProducto.setText(null);
@@ -135,35 +105,44 @@ public class ControladorCompras implements ActionListener, FocusListener{
         Detalle[4] = modeloCo.getVistaCo().txtDescripcion.getText();
         modeloCo.getVistaCo().txtDescripcion.setText(null);
         
-        modeloCo.modeloTabla.addRow(Encabezado);
-        modeloCo.modeloTabla.addRow(Detalle);*/
-        return false;
+        modelo.addRow(Encabezado);
+        modelo.addRow(Detalle);
+        
+        return modelo;
         
     }
+    
+    private DefaultTableModel eliminarCompra() {
+        DefaultTableModel modelo = new DefaultTableModel();
+        int filaSeleccinada = modeloCo.getVistaCo().tblCompras.getSelectedRow();
+        if (filaSeleccinada>=0) {
+            modelo.removeRow(filaSeleccinada);
+        }else{
+            JOptionPane.showMessageDialog(null, "No ha seleccionado fila");
+        }
+        return modelo;
+    }*/
 
     private void limpiar() {
+        modeloCo.getVistaCo().txtID.setText("");
+        modeloCo.getVistaCo().txtNoFactura.setText("");
+        modeloCo.getVistaCo().txtNoSerie.setText("");
         modeloCo.getVistaCo().txtNitCompras.setText("");
+        modeloCo.getVistaCo().txtNombrecCompras.setText("");
         modeloCo.getVistaCo().txtTelefonoCompras.setText("");
         modeloCo.getVistaCo().txtCorreoCompras.setText("");
         modeloCo.getVistaCo().txtDireccionCompras.setText("");
+        modeloCo.getVistaCo().txtCodProducto.setText("");
         modeloCo.getVistaCo().txtNombrePCompras.setText("");
         modeloCo.getVistaCo().txtUnidades.setText("");
         modeloCo.getVistaCo().txtPrecCosto.setText("");
         modeloCo.getVistaCo().txtDescripcion.setText("");
         modeloCo.getVistaCo().txtNitCompras.setText("");
+        modeloCo.getVistaCo().txtFecha.setText("");
     }
 
-    private boolean actualizarCompra() {
-        return AgregarTabla();
-    }
-
-    private boolean eliminarCompra() {
-        return AgregarTabla();
-    }
-
-    private void LlenarProveedor() {
-        
-    }
+    
+    
     @Override
     public void focusGained(FocusEvent e) {
         
@@ -173,24 +152,5 @@ public class ControladorCompras implements ActionListener, FocusListener{
     public void focusLost(FocusEvent e) {
     }
 
-    
-
-    private boolean BuscarCliente() {
-        return false;
-    }
-
-    private boolean BuscarProducto() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    public String VoyAtomarAgua ;
-
-    
-
-    
-
-    
-
-    
     
 }

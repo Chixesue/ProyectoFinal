@@ -201,7 +201,7 @@ public class VistaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_JmIngresoUsuariosActionPerformed
 
     private void JmIngresoInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmIngresoInventarioActionPerformed
-   new VistaIngresoInventario().setVisible(true);
+   new VistaInventario().setVisible(true);
     }//GEN-LAST:event_JmIngresoInventarioActionPerformed
 
     private void JmIngresoCllientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JmIngresoCllientesActionPerformed
