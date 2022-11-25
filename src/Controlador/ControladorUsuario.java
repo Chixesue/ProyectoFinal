@@ -1,3 +1,4 @@
+package Controlador;
 
 import Conector.Conector;
 import Conector.SQL;
@@ -21,35 +22,7 @@ public class ControladorUsuario implements ActionListener, WindowListener{
     
     public ControladorUsuario(ModelosUsuario modelo){
         this.modelo = modelo;
-    }
-
-//@Override
-//    public void actionPerformed(ActionEvent e) {
-//        if (e.getActionCommand().equals(modelo.getVistaUs().btnGuardarUs.getActionCommand())) {
-//            if (modelo.getVistaUs().txtUsuario.getText().isEmpty() || modelo.getVistaUs().txtNombreUs.getText().isEmpty()
-//                    || modelo.getVistaUs().txtPassword.getText().isEmpty()) {
-//                JOptionPane.showMessageDialog(null, "Usuario, Nombre o Password no pueden estar vacios");
-//
-// 
-//
-//            } else if (modelo.getVistaUs().txtPassword.getText().equals(modelo.getVistaUs().txtPassword2.getText())) {
-//                insertarUsuario();
-//                conector.mensaje("Se inserto el usuario " + modelo.getVistaUs().txtUsuario.getText() + " con exito", "Exito!", 1);
-//                limpiarCampos();
-//            } else {
-//                conector.mensaje("Las contraseñas ingresadas no coinciden", "Error", 2);
-//            }
-//        }
-//        if (e.getActionCommand().equals(modelo.getVistaUs().btnEliminar.getActionCommand())) {
-//            if (!eliminarUsuario()) {
-//                conector.mensaje("Se Elimino el usuario " + modelo.getVistaUs().txtUsuario.getText() + " con exito", "Exito!", 1);
-//                limpiarCampos();
-//            } else {
-//                conector.mensaje("A ocurrido un error, no se elimino el usuario", "Error", 2);
-//            }
-//        }    
-      
-    
+    }     
     
     @Override
     public void actionPerformed(ActionEvent e) {
